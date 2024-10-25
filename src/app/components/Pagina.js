@@ -1,21 +1,12 @@
-import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
+// Pagina.js
+import React from 'react';
+import { Container } from "react-bootstrap";
+import NavbarComponent from './NavbarComponent';  // Importe o NavbarComponent
 
 export default function Pagina(props) {
     return (
         <>
-            <Navbar bg="dark" data-bs-theme="dark">
-                <Container>
-                    <Navbar.Brand href="/">Home</Navbar.Brand>
-                    <Nav className="me-auto">
-                            
-                        <Nav.Link href="/empresas">Empresas</Nav.Link>
-                        <Nav.Link href="/aeroportos">Aeroportos</Nav.Link>
-                        <Nav.Link href="/passageiros">Passageiros</Nav.Link>
-                        <Nav.Link href="/passagens">Passagens</Nav.Link>
-                        <Nav.Link href="/voos">Voos</Nav.Link>
-                    </Nav>
-                </Container>
-            </Navbar>
+            <NavbarComponent />  {/* Use o NavbarComponent aqui */}
 
             <div className="bg-secondary text-white text-center p-3">
                 <h1>{props.titulo}</h1>
@@ -25,5 +16,5 @@ export default function Pagina(props) {
                 {props.children}
             </Container>
         </>
-    )
+    );
 }

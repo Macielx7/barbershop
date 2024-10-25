@@ -1,10 +1,12 @@
 'use client'
 
-import Pagina from "@/app/components/Pagina";
+import Pagina from "../components/Pagina"
+
+
 
 export default function Page(){
     return(
-        <Pagina>
+        <Pagina titulo="funcionários">
 
         </Pagina>
         
