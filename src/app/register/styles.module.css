@@ -1,0 +1,49 @@
+/* styles.css */
+.body{
+    background-image: url('/images/banner-04.png');
+    background-size: cover; /* Faz a imagem cobrir toda a área disponível */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Impede que a imagem se repita */
+    min-height: 100vh; /* Garante que o corpo tenha pelo menos a altura da tela */
+}
+
+.card {
+  background-color: #ffffff;; 
+  border: 2px solid #28a745; 
+  color: rgb(0, 0, 0);
+}
+  
+  .cardH2 {
+    color: #28a745; 
+  }
+  
+  .btnprimary {
+    background-color: #28a745; 
+    border-color: #28a745; 
+    color: #ffffff;
+  }
+  
+  .btnprimary:hover {
+    background-color: #ffffff; 
+    border-color: #1e7e34; 
+    color: #28a745;
+  }
+  
+  .alertsuccess {
+    background-color: #d4edda; 
+    color: #155724; 
+  }
+  
+  .alertdanger {
+    background-color: #f8d7da; 
+    color: #721c24; 
+  }
+  
+  .textcenter a {
+    color: #28a745; 
+  }
+  
+  .textcenter a:hover {
+    color: #218838; 
+  }
+  

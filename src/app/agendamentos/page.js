@@ -13,13 +13,7 @@ const localizer = momentLocalizer(moment);
 export default function Agendamentos() {
   const [events, setEvents] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [newEvent, setNewEvent] = useState({
-    title: '',
-    start: new Date(),
-    end: new Date(),
-    barbeiro: '',
-    cliente: '',
-  });
+  const [newEvent, setNewEvent] = useState({ title: '', start: new Date(), end: new Date(), barbeiro: '' });
   const [barbeiros, setBarbeiros] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -28,6 +22,12 @@ export default function Agendamentos() {
     const storedBarbeiros = localStorage.getItem('funcionarios');
     if (storedBarbeiros) {
       setBarbeiros(JSON.parse(storedBarbeiros));
+    }
+
+    // Carregar agendamentos do localStorage
+    const storedAgendamentos = localStorage.getItem('agendamentos');
+    if (storedAgendamentos) {
+      setEvents(JSON.parse(storedAgendamentos));
     }
   }, []);
 
@@ -57,24 +57,24 @@ export default function Agendamentos() {
       return;
     }
 
-    setEvents([...events, { ...newEvent, id: Date.now() }]);
-    setShowModal(false);
-    setNewEvent({ title: '', start: new Date(), end: new Date(), barbeiro: '', cliente: '' });
-    setErrorMessage('');
-  };
+    // Formatar título do evento com barbeiro e horário
+    const eventTitle = `${newEvent.title} - ${newEvent.barbeiro} (${moment(newEvent.start).format('HH:mm')})`;
 
-  const eventStyleGetter = (event) => {
-    const style = {
-      backgroundColor: '#3174eb',
-      border: 'none',
-      borderRadius: '5px',
-      padding: '10px',
-      color: 'white',
-      display: 'block',
-    };
-    return {
-      style,
-    };
+    // Salvar evento no estado e no localStorage
+    const updatedEvents = [
+      ...events,
+      {
+        ...newEvent,
+        title: eventTitle, // Usar o título formatado
+        id: Date.now()
+      }
+    ];
+    setEvents(updatedEvents);
+    localStorage.setItem('agendamentos', JSON.stringify(updatedEvents));
+
+    setShowModal(false);
+    setNewEvent({ title: '', start: new Date(), end: new Date(), barbeiro: '' });
+    setErrorMessage('');
   };
 
   return (
@@ -82,26 +82,17 @@ export default function Agendamentos() {
       <div style={{ height: '80vh', margin: '20px' }}>
         <Calendar
           localizer={localizer}
-          events={events}
+          events={events.map(event => ({
+            ...event,
+            start: new Date(event.start), // Converte para objeto Date
+            end: new Date(event.end) // Converte para objeto Date
+          }))}
           startAccessor="start"
           endAccessor="end"
           style={{ height: '100%' }}
           selectable
           onSelectSlot={handleSelect}
-          components={{
-            event: ({ event }) => (
-              <span>
-                <strong>{event.title}</strong>
-                <br />
-                <span>Barbeiro: {event.barbeiro}</span>
-                <br />
-                <span>Cliente: {event.cliente}</span>
-                <br />
-                <span>Horário: {moment(event.start).format('DD/MM/YYYY HH:mm')} - {moment(event.end).format('HH:mm')}</span>
-              </span>
-            ),
-          }}
-          eventPropGetter={eventStyleGetter}
+          views={['month', 'week', 'day']} // Adiciona visualizações de mês, semana e dia
         />
       </div>
 
@@ -137,14 +128,13 @@ export default function Agendamentos() {
                 ))}
               </Form.Control>
             </Form.Group>
-            <Form.Group controlId="formCliente">
-              <Form.Label>Cliente</Form.Label>
+            <Form.Group controlId="formHorario">
+              <Form.Label>Horário</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Digite o nome do cliente"
-                name="cliente"
-                value={newEvent.cliente}
-                onChange={handleInputChange}
+                type="time"
+                name="horario"
+                value={moment(newEvent.start).format('HH:mm')}
+                onChange={(e) => setNewEvent({ ...newEvent, start: moment(newEvent.start).set({ hour: e.target.value.split(':')[0], minute: e.target.value.split(':')[1] }).toDate() })}
               />
             </Form.Group>
           </Form>
