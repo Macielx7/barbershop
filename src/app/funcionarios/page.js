@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Button, Modal, Form, Container, Table } from 'react-bootstrap';
+import { Button, Modal, Form, Container, Table, Card } from 'react-bootstrap';
 import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 import Pagina from "../components/Pagina";
 
@@ -9,7 +9,7 @@ export default function Funcionarios() {
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [funcionarios, setFuncionarios] = useState([]);
-  const [newFuncionario, setNewFuncionario] = useState({ id: null, nome: '', cargo: '', email: '' });
+  const [newFuncionario, setNewFuncionario] = useState({ id: null, nome: '', email: '', telefone: '', imagem: ''});
   const [selectedFuncionario, setSelectedFuncionario] = useState(null);
 
   // Carrega os funcionários do localStorage quando o componente é montado
@@ -21,7 +21,7 @@ export default function Funcionarios() {
   }, []);
 
   const handleShow = () => {
-    setNewFuncionario({ id: null, nome: '', cargo: '', email: '' });
+    setNewFuncionario({ id: null, nome: '', email: '', telefone:'', imagem: '' });
     setShowModal(true);
   };
 
@@ -81,20 +81,20 @@ export default function Funcionarios() {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>ID</th>
               <th>Nome</th>
-              <th>Cargo</th>
               <th>Email</th>
-              <th>Ações</th>
+              <th>Telefone</th>
+              <th>Imagem</th>
             </tr>
           </thead>
           <tbody>
             {funcionarios.map(funcionario => (
               <tr key={funcionario.id}>
-                <td>{funcionario.id}</td>
                 <td>{funcionario.nome}</td>
-                <td>{funcionario.cargo}</td>
                 <td>{funcionario.email}</td>
+                <td>{funcionario.telefone}</td>
+                <td><Card.Img variant="top" src={funcionario.imagem || 'https://via.placeholder.com/200'} style={{ width: '80px', height: 'auto' }} /></td>
+
                 <td>
                   <Button variant="primary" onClick={() => handleEdit(funcionario)} className="me-2">
                     <FaEdit /> Editar
@@ -125,16 +125,6 @@ export default function Funcionarios() {
                   onChange={handleInputChange}
                 />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formCargo">
-                <Form.Label>Cargo</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Digite o cargo do funcionário"
-                  name="cargo"
-                  value={newFuncionario.cargo}
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
               <Form.Group className="mb-3" controlId="formEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
@@ -145,28 +135,48 @@ export default function Funcionarios() {
                   onChange={handleInputChange}
                 />
               </Form.Group>
-            </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>Cancelar</Button>
-            <Button variant="primary" onClick={handleSave}>Salvar</Button>
-          </Modal.Footer>
-        </Modal>
+              <Form.Group className="mb-3" controlId="formTelefone">
+              <Form.Label>Telefone</Form.Label>
+              <Form.Control
+                type="telefone"
+                placeholder="Digite o telefone do funcionário"
+                name="telefone"
+                value={newFuncionario.telefone}
+                onChange={handleInputChange}
+              />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formImagem">
+                <Form.Label>Imagem (URL)</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Digite a URL da imagem do funcionário"
+                  name="imagem"
+                  value={newFuncionario.imagem}
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>Cancelar</Button>
+          <Button variant="primary" onClick={handleSave}>Salvar</Button>
+        </Modal.Footer>
+      </Modal>
 
-        {/* Modal de confirmação de exclusão */}
-        <Modal show={showDeleteModal} onHide={handleDeleteClose} centered>
-          <Modal.Header closeButton>
-            <Modal.Title>Confirmar Exclusão</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>Tem certeza que deseja excluir o funcionário "{selectedFuncionario?.nome}"?</p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleDeleteClose}>Cancelar</Button>
-            <Button variant="danger" onClick={() => { handleDelete(selectedFuncionario.id); handleDeleteClose(); }}>Excluir</Button>
-          </Modal.Footer>
-        </Modal>
-      </Container>
-    </Pagina>
+      {/* Modal de confirmação de exclusão */}
+      <Modal show={showDeleteModal} onHide={handleDeleteClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmar Exclusão</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Tem certeza que deseja excluir o funcionário "{selectedFuncionario?.nome}"?</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleDeleteClose}>Cancelar</Button>
+          <Button variant="danger" onClick={() => { handleDelete(selectedFuncionario.id); handleDeleteClose(); }}>Excluir</Button>
+        </Modal.Footer>
+      </Modal>
+    </Container>
+    </Pagina >
   );
 }
