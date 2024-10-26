@@ -1,10 +1,8 @@
 'use client';
-
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Modal, Form, Container, Row, Col } from 'react-bootstrap';
 import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 import Pagina from "../components/Pagina";
-
 export default function Servicos() {
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);

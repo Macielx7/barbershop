@@ -1,0 +1,46 @@
+.Body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.card {
+  background-color: #ffffff; 
+  border: 2px solid #28a745; 
+  color: rgb(0, 0, 0);
+}
+
+.cardH2 {
+  color: #28a745; 
+}
+
+.btnLogin {
+  background-color: #28a745; 
+  border-color: #28a745; 
+  color: #ffffff;
+}
+
+.btnLogin:hover {
+  background-color: #ffffff; 
+  border-color: #1e7e34; 
+  color: #28a745;
+}
+
+.alertsuccess {
+  background-color: #d4edda; 
+  color: #155724; 
+}
+
+.alertdanger {
+  background-color: #f8d7da; 
+  color: #721c24; 
+}
+
+.textcenter a {
+  color: #28a745; 
+}
+
+.textcenter a:hover {
+  color: #218838; 
+}
