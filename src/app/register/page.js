@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './styles.module.css';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import NavbarComponent from '../components/NavbarComponent';
 
 export default function PaginaRegistro() {
   const [usuario, setUsuario] = useState('');
@@ -39,68 +40,68 @@ export default function PaginaRegistro() {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh', backgroundColor: '#E9F3F9' }}>
-      <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh', backgroundColor: '#E9F3F9' }}>
-        <Row className="w-100">
-          <Col md={6} lg={5} className="mx-auto">
-            <Card className="shadow-lg p-3 mb-5 rounded" style={{ border: 'none' }}>
-              <Card.Body style={{ backgroundColor: '#FFFFFF' }}>
-                <h2 className={`text-center mb-4`} style={{ color: '#004B87' }}>Registro</h2>
-                {mensagem && <Alert variant={mensagem.includes('sucesso') ? 'success' : 'danger'}>{mensagem}</Alert>}
-                <Form>
-                  <Form.Group controlId="formUsuario">
-                    <Form.Label style={{ color: '#333333' }}>Usuário</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Digite o nome de usuário"
-                      value={usuario}
-                      onChange={(e) => setUsuario(e.target.value)}
-                      required
-                      style={{ borderColor: '#4CAF50' }}
-                    />
-                  </Form.Group>
+    <>
+      <NavbarComponent />
+      <div className={styles.body}>
+        <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+          <Row className="w-100">
+            <Col md={6} lg={5} className="mx-auto">
+              <Card className={`${styles.card} shadow-lg p-3 mb-5 rounded`}>
+                <Card.Body className={styles.cardBody}>
+                  <h2 className={`${styles.cardH2} text-center mb-4`}>Registro</h2>
+                  {mensagem && <Alert className={mensagem.includes('sucesso') ? styles.alertSuccess : styles.alertDanger}>{mensagem}</Alert>}
+                  <Form>
+                    <Form.Group controlId="formUsuario">
+                      <Form.Label>Usuário</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Digite o nome de usuário"
+                        value={usuario}
+                        onChange={(e) => setUsuario(e.target.value)}
+                        required
+                      />
+                    </Form.Group>
 
-                  <Form.Group controlId="formSenha" className="mt-3">
-                    <Form.Label style={{ color: '#333333' }}>Senha</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Digite a senha"
-                      value={senha}
-                      onChange={(e) => setSenha(e.target.value)}
-                      required
-                      style={{ borderColor: '#4CAF50' }}
-                    />
-                  </Form.Group>
+                    <Form.Group controlId="formSenha" className="mt-3">
+                      <Form.Label>Senha</Form.Label>
+                      <Form.Control
+                        type="password"
+                        placeholder="Digite a senha"
+                        value={senha}
+                        onChange={(e) => setSenha(e.target.value)}
+                        required
+                      />
+                    </Form.Group>
 
-                  <Form.Group controlId="formConfirmarSenha" className="mt-3">
-                    <Form.Label style={{ color: '#333333' }}>Confirme a Senha</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Confirme a senha"
-                      value={confirmarSenha}
-                      onChange={(e) => setConfirmarSenha(e.target.value)}
-                      required
-                      style={{ borderColor: '#4CAF50' }}
-                    />
-                  </Form.Group>
+                    <Form.Group controlId="formConfirmarSenha" className="mt-3">
+                      <Form.Label>Confirme a Senha</Form.Label>
+                      <Form.Control
+                        type="password"
+                        placeholder="Confirme a senha"
+                        value={confirmarSenha}
+                        onChange={(e) => setConfirmarSenha(e.target.value)}
+                        required
+                      />
+                    </Form.Group>
 
-                  <Button variant="primary" className="w-100 mt-4" style={{ backgroundColor: '#004B87', borderColor: '#004B87' }} onClick={tratarRegistro}>
-                    Registrar
-                  </Button>
-                </Form>
-
-                <div className="text-center mt-3">
-                  <Link href="/login">
-                    <Button variant="link" style={{ color: '#004B87' }}>
-                      Já tem conta? Faça login
+                    <Button className={`${styles.btnPrimary} w-100 mt-4`} onClick={tratarRegistro}>
+                      Registrar
                     </Button>
-                  </Link>
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+                  </Form>
+
+                  <div className="text-center mt-3">
+                    <Link href="/login">
+                      <Button variant="link" className={styles.link}>
+                        Já tem conta? Faça login
+                      </Button>
+                    </Link>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </>
   );
 }
