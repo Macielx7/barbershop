@@ -1,0 +1,42 @@
+
+
+.card {
+  background-color: #212529; 
+  border: none;
+  color: #f1f1f1;
+}
+
+.cardH2 {
+  color: white; 
+  font-family: 'Roboto', sans-serif;
+}
+
+.alertSuccess {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.alertDanger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.btnPrimary {
+  background-color: #11c438;
+  border: none;
+  color: #212529;
+  font-weight: bold;
+}
+
+.btnPrimary:hover {
+  background-color: #12832b;
+  color: #ffffff;
+}
+
+.link {
+  color: white;
+}
+
+.link:hover {
+  color: #11c438;
+}

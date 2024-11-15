@@ -1,0 +1,8 @@
+.custom-calendar .rbc-header {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.custom-calendar .rbc-header + .rbc-header {
+  border-left: 1px solid #ffffff;
+}

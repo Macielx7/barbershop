@@ -1,0 +1,39 @@
+{
+  "name": "voemais",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fullcalendar/daygrid": "^6.1.15",
+    "@fullcalendar/interaction": "^6.1.15",
+    "@fullcalendar/react": "^6.1.15",
+    "@fullcalendar/timegrid": "^6.1.15",
+    "axios": "^1.7.7",
+    "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.6",
+    "date-fns": "^4.1.0",
+    "formik": "^2.4.6",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.4",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.46",
+    "next": "14.2.13",
+    "react": "^18",
+    "react-big-calendar": "^1.15.0",
+    "react-bootstrap": "^2.10.4",
+    "react-chartjs-2": "^5.2.0",
+    "react-datepicker": "^7.5.0",
+    "react-dom": "^18",
+    "react-icons": "^5.3.0",
+    "react-input-mask": "^2.0.4",
+    "react-select": "^5.8.2",
+    "remask": "^1.2.2",
+    "uuid": "^10.0.0",
+    "yup": "^1.4.0"
+  }
+}

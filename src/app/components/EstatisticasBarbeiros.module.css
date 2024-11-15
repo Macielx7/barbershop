@@ -1,0 +1,37 @@
+EstatisticasBarbeiros.module.css
+.smallBox {
+    height: 150px; /* Altura fixa para todos os cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 20px; /* Espaçamento interno */
+    transition: transform 0.2s; /* Efeito de transição */
+  }
+  
+  .smallBox:hover {
+    transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
+  }
+  
+  .inner {
+    text-align: center;
+  }
+  
+  .numero {
+    font-size: 1.5rem; /* Aumenta o tamanho da fonte dos números */
+    margin: 0; /* Remove margem */
+  }
+  
+  .texto {
+    font-size: 1rem; /* Aumenta o tamanho da fonte do texto */
+  }
+  
+  .icon {
+    font-size: 2rem; /* Tamanho do ícone */
+  }
+  
+  .smallBoxFooter {
+    font-size: 1.1rem; /* Tamanho da fonte do link */
+  }
+  
